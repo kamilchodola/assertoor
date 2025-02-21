@@ -46,7 +46,7 @@ tasks:
     awaitReceipt: true
   configVars:
     # max 100 pending tx per wallet to avoid nonce gap limits
-    childWallets: "childWallets"
+    childWallets: childWallets
     limitTotal: "transactionCount"
     limitPerBlock: "transactionsPerBlock"
     limitPending: "transactionsPerBlock"
