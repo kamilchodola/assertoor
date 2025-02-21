@@ -78,14 +78,14 @@ tasks:
     privateKey: "walletPrivkey"
 # check blob trnasaction contract call with eip4844 specific opcodes
 - name: generate_transaction
-  title: "Call EIP4844 test contract: test1() with 3 blob sidecars"
+  title: "Call EIP4844 test contract: test1() with 2 blob sidecars"
   config:
     feeCap: 5000000000 # 5 gwei
     blobFeeCap: 5000000000 # 5 gwei
     gasLimit: 1000000
     callData: "0x6b59084d"
     blobTxType: true
-    blobData: "identifier,repeat:0x42:100000;identifier,repeat:0x1337:50000;0x00"
+    blobData: "identifier,repeat:0x42:100000;0x00"
     expectEvents:
       # EIP-4844: blobhash([0,5])
       - { topic0: "0x164a8ff8b21654fcb500a8a9e56e496fec47640fa9cecb75de70cac1121a2ab0", topic1: "0x0000000000000000000000000000000000000000000000000000000000000000", data: "0x01c67aca3f358cc1087277e0145a4b26c5a99a6196f816d232076aefb91d947a" }
