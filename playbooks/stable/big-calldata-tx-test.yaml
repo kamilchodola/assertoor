@@ -24,7 +24,9 @@ tasks:
     command: |
       echo "Generate calldata with $calldataSize zero bytes"
       calldata="0x$(eval "printf '00%.0s' {1..$calldataSize}")"
+      childWallets=| [1, (.transactionCount / 100) | round] | max
       echo "::set-var calldata $calldata"
+      echo "::set-var childWallets $childWallets"
       echo "yea"
 
 - name: check_consensus_sync_status
@@ -43,7 +45,7 @@ tasks:
     awaitReceipt: true
   configVars:
     # max 100 pending tx per wallet to avoid nonce gap limits
-    childWallets: "| [1, (.transactionCount / 100) | round] | max"
+    childWallets: childWallets
     limitTotal: "transactionCount"
     limitPerBlock: "transactionsPerBlock"
     limitPending: "transactionsPerBlock"
