@@ -25,6 +25,7 @@ tasks:
       echo "Generate calldata with $calldataSize zero bytes"
       calldata="0x$(eval "printf '00%.0s' {1..$calldataSize}")"
       childWallets=$(( transactionCount / 100 > 1 ? transactionCount / 100 : 1 ))
+      echo $childWallets
       echo "::set-var calldata $calldata"
       echo "::set-var childWallets $childWallets"
       echo "yea"
