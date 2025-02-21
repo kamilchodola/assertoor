@@ -25,6 +25,7 @@ tasks:
       echo "Generate calldata with $calldataSize zero bytes"
       calldata="0x$(eval "printf '00%.0s' {1..$calldataSize}")"
       childWallets=$(( transactionCount / 100 > 1 ? transactionCount / 100 : 1 ))
+      echo $childWallets
       echo "::set-var calldata $calldata"
       echo "::set-var childWallets $childWallets"
       echo "yea"
@@ -45,7 +46,7 @@ tasks:
     awaitReceipt: true
   configVars:
     # max 100 pending tx per wallet to avoid nonce gap limits
-    childWallets: $(( transactionCount / 100 > 1 ? transactionCount / 100 : 1 ))
+    childWallets: childWallets
     limitTotal: "transactionCount"
     limitPerBlock: "transactionsPerBlock"
     limitPending: "transactionsPerBlock"
